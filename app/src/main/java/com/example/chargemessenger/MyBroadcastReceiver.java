@@ -1,7 +1,5 @@
 package com.example.chargemessenger;
 
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -64,9 +62,10 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         Intent intent = context.registerReceiver(null,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
         int curLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-        Intent notify = new Intent(context, MainActivity.class);
-        Notification noti;
-        PendingIntent pIntent = PendingIntent.getActivity(context, 0, notify, 0);
+        // Не уверен что нужны эти 3 строки но если вдруг понадабятся - раскомментируйте!
+//        Intent notify = new Intent(context, MainActivity.class);
+//        Notification noti;
+//        PendingIntent pIntent = PendingIntent.getActivity(context, 0, notify, 0);
 
 //        if(curLevel <= 15 && !charger) {
 //            noti = new Notification.Builder(context).setTicker("Ticker Title")
@@ -88,7 +87,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
              // really need a func
              String chatId = "904847378";
-             String text = "Hello_world123!";
+             String text = "Full_charge";
 
              urlString = String.format(urlString, apiToken, chatId, text);
 
