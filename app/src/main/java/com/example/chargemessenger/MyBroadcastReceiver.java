@@ -7,9 +7,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.BatteryManager;
+import android.os.StrictMode;
 import android.widget.Toast;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -17,10 +23,28 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     Boolean charger=false;
     @Override
     public void onReceive(Context context, Intent intent) {// +- работает
-      Intent telegram = new Intent(Intent.ACTION_VIEW); // все еще не работает в фоне
-      telegram.setData(Uri.parse("http://telegram.me/Zalmek")); //Ввести имя пользователя открывает избранное в телеграмме
-      telegram.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      context.startActivity(telegram);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+        String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s ";
+
+        String apiToken = "1448041949:AAGKZXLqa7MTi25uE3JflofJrFadzY0KQSc";
+
+        // really need a func
+        String chatId = "904847378";
+        String text = "Hello_world123!";
+
+        urlString = String.format(urlString, apiToken, chatId, text);
+
+        try {
+            URL url = new URL(urlString);
+            URLConnection conn = url.openConnection();
+            InputStream is = new BufferedInputStream(conn.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
             Toast.makeText(context, "The device is charging", Toast.LENGTH_SHORT).show();
