@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -21,10 +22,10 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
     @Override
     public void onReceive(Context context, Intent intent) {// +- работает
-        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN) == 5) {
+        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && intent.getIntExtra(BatteryManager.EXTRA_LEVEL,-1)==100) {
             String rootDataDir = context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
             File file = new File(rootDataDir, "id.txt");
-//            Log.i(TAG, rootDataDir.toString());
+            Log.i(TAG, rootDataDir.toString());
             int length = (int) file.length();
 
             byte[] bytes = new byte[length];
@@ -72,7 +73,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
     }
-//        else Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN)));
+        else Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1)));
         }
 
     }
