@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.os.Environment;
 import android.os.StrictMode;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -19,14 +18,13 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
-    Boolean charger=false;
     private static final String TAG = "RecTag";
     @Override
     public void onReceive(Context context, Intent intent) {// +- работает
         if (intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN) == 5) {
             String rootDataDir = context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
             File file = new File(rootDataDir, "id.txt");
-            Log.i(TAG, rootDataDir.toString());
+//            Log.i(TAG, rootDataDir.toString());
             int length = (int) file.length();
 
             byte[] bytes = new byte[length];
@@ -73,10 +71,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
     }
-        else Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN)));
+//        else Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN)));
         }
 
     }

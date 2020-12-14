@@ -66,8 +66,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void startMyService() {
-        startService(new Intent (this,MyService.class));
-    }
-
 }
