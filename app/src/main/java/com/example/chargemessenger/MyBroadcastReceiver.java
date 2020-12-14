@@ -47,7 +47,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
                     e.printStackTrace();
                 }
             }
-            // send message
             String contents = new String(bytes);
             Toast.makeText(context, contents, Toast.LENGTH_SHORT).show();
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -57,7 +56,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
             String apiToken = "1448041949:AAGKZXLqa7MTi25uE3JflofJrFadzY0KQSc";
 
-            // really need a func
             String chatId = contents;
             String text = "Full_charge";
 

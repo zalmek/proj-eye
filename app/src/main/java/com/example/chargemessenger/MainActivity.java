@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,8 +16,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import static java.lang.Thread.sleep;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -56,13 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 secondThread = new IThread();
                 secondThread.start();
-                try {
-                    sleep(30000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-//                MainActivity.this.startMyService();
-//                Toast.makeText(getApplicationContext(),"buttonclicked",Toast.LENGTH_SHORT).show();
+               Toast.makeText(getApplicationContext(),"UserId completed. App is ready. You can quit.",Toast.LENGTH_LONG).show();
             }
         });
     }
