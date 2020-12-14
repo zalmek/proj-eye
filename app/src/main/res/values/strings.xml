@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">chargeMessenger</string>
     <string name="button">Включить</string>
+    <string name="userid">Userid</string>
 </resources>
