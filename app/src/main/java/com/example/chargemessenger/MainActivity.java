@@ -1,6 +1,7 @@
 package com.example.chargemessenger;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -14,6 +15,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import static java.lang.Thread.sleep;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -47,11 +50,17 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        Intent intent = getApplicationContext().registerReceiver(new MyBroadcastReceiver(), new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 secondThread = new IThread();
                 secondThread.start();
+                try {
+                    sleep(30000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 //                MainActivity.this.startMyService();
 //                Toast.makeText(getApplicationContext(),"buttonclicked",Toast.LENGTH_SHORT).show();
             }
