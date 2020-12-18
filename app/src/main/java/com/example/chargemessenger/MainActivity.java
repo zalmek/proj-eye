@@ -1,7 +1,6 @@
 package com.example.chargemessenger;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -13,10 +12,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.chargemessenger.databinding.ActivityMainBinding;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
+
+//String rootDataDir = getApplicationContext().getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
+//        File file = new File(rootDataDir, "id.txt");
+//        int length = (int) file.length();
+//
+//        byte[] bytes = new byte[length];
+//
+//        FileInputStream in = null;
+//        try {
+//        in = new FileInputStream(file);
+//        } catch (FileNotFoundException e) {
+//        e.printStackTrace();
+//        }
+//        try {
+//        in.read(bytes);
+//        } catch (IOException e) {
+//        e.printStackTrace();
+//        } finally {
+//        try {
+//        in.close();
+//        } catch (IOException e) {
+//        e.printStackTrace();
+//        }
+//        }
+//        String contents = new String(bytes);
+//        Log.i(TAG,contents);
+////
 
 public class MainActivity extends AppCompatActivity {
     class IThread extends Thread
@@ -40,8 +69,41 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    class OThread extends Thread
+    {
+        @Override
+        public void run()	//Этот метод будет выполнен в побочном потоке
+        { String rootDataDir = getApplicationContext().getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
+        File file = new File(rootDataDir, "id.txt");
+        int length = (int) file.length();
+
+        byte[] bytes = new byte[length];
+
+        FileInputStream in = null;
+        try {
+        in = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+        e.printStackTrace();
+        }
+        try {
+        in.read(bytes);
+        } catch (IOException e) {
+        e.printStackTrace();
+        } finally {
+        try {
+        in.close();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+        }
+        String contents = new String(bytes);
+        Log.i(TAG,contents);
+        binding.Userid.setText(contents);
+        }
+    }
     static IThread secondThread;
     public ActivityMainBinding binding;
+    static OThread thirdThread;
     private static final String TAG = "myLogs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        Intent intent = getApplicationContext().registerReceiver(new MyBroadcastReceiver(), new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        thirdThread = new OThread();
+        thirdThread.start();
+        startService(new Intent(this,MyService.class));
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
