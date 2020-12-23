@@ -22,7 +22,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
     @Override
     public void onReceive(Context context, Intent intent) {// +- работает
-        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && intent.getIntExtra(BatteryManager.EXTRA_LEVEL,-1)==100) {
+        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS,BatteryManager.BATTERY_STATUS_UNKNOWN) == 5) {
             String rootDataDir = context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
             File file = new File(rootDataDir, "id.txt");
             Log.i(TAG, rootDataDir.toString());
