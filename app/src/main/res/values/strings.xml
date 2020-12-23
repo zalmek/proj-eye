@@ -2,4 +2,6 @@
     <string name="app_name">chargeMessenger</string>
     <string name="button">Включить</string>
     <string name="userid">Userid</string>
+    <string name="bot_token">Bot_token</string>
+    <string name="text">Text</string>
 </resources>
