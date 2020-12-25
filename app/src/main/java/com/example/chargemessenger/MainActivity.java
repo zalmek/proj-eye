@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 secondThread = new IThread();
                 secondThread.start();
-               Toast.makeText(getApplicationContext(),"UserId completed. App is ready. You can quit.",Toast.LENGTH_LONG).show();
+               Toast.makeText(getApplicationContext(),"Action completed. App is ready. You can quit.",Toast.LENGTH_LONG).show();
             }
         });
     }
