@@ -2,59 +2,27 @@ package com.example.chargemessenger;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chargemessenger.databinding.ActivityMainBinding;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-//String rootDataDir = getApplicationContext().getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
-//        File file = new File(rootDataDir, "id.txt");
-//        int length = (int) file.length();
-//
-//        byte[] bytes = new byte[length];
-//
-//        FileInputStream in = null;
-//        try {
-//        in = new FileInputStream(file);
-//        } catch (FileNotFoundException e) {
-//        e.printStackTrace();
-//        }
-//        try {
-//        in.read(bytes);
-//        } catch (IOException e) {
-//        e.printStackTrace();
-//        } finally {
-//        try {
-//        in.close();
-//        } catch (IOException e) {
-//        e.printStackTrace();
-//        }
-//        }
-//        String contents = new String(bytes);
-//        Log.i(TAG,contents);
-////
-
 public class MainActivity extends AppCompatActivity {
+    public static String id_file = "id.txt";
+    public static String bot_token_file = "bot_token.txt";
+    public static String text_file = "text.txt";
     class IThread extends Thread
     {
         @Override
         public void run()	//Этот метод будет выполнен в побочном потоке
         {
-            overwriteFile("id.txt",binding.Userid);
-            overwriteFile("bot_token.txt",binding.BotToken);
-            overwriteFile("text.txt",binding.Text);
+            Writer writer = new Writer();
+            writer.write(getApplicationContext(),id_file,binding.Userid);
+            writer.write(getApplicationContext(),bot_token_file,binding.BotToken);
+            writer.write(getApplicationContext(),text_file,binding.Text);
+
         }
     }
     class OThread extends Thread
@@ -62,9 +30,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run()	//Этот метод будет выполнен в побочном потоке
         {
-        binding.Userid.setText(readFromFileobj("id.txt"));
-        binding.BotToken.setText(readFromFileobj("bot_token.txt"));
-        binding.Text.setText(readFromFileobj("text.txt"));
+            Reader reader = new Reader();
+            reader.read(getApplicationContext(),id_file);
+            binding.Userid.setText(reader.getText());
+            reader.read(getApplicationContext(),bot_token_file);
+            binding.BotToken.setText(reader.getText());
+            reader.read(getApplicationContext(),text_file);
+            binding.Text.setText(reader.getText());
         }
     }
     static IThread secondThread;
@@ -88,56 +60,5 @@ public class MainActivity extends AppCompatActivity {
                Toast.makeText(getApplicationContext(),"Action completed. App is ready. You can quit.",Toast.LENGTH_LONG).show();
             }
         });
-    }
-    public String readFromFileobj(String filename){
-        try {
-        String rootDataDir = getApplicationContext().getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
-        File file = new File(rootDataDir, filename);
-        int length = (int) file.length();
-
-        byte[] bytes = new byte[length];
-
-        FileInputStream in = null;
-        try {
-            in = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            in.read(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                in.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        String contents = new String(bytes);
-        return contents;}
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public void overwriteFile(String filename, EditText inObj){
-        try {
-        String rootDataDir = getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
-        Log.i(TAG, rootDataDir.toString());
-        File file = new File(rootDataDir, filename);
-        try {
-            PrintWriter writer = new PrintWriter(new FileWriter(file));
-            writer.printf("%s", inObj.getText()); //Записываем текст в файл
-            writer.close(); // Закрываем файл
-//                Log.i(TAG, String.valueOf(file.canRead()));
-//                Log.i(TAG, String.valueOf(file.canWrite()));
-            Log.i(TAG, String.valueOf(file.exists()));
-        } catch (IOException e) {
-            e.printStackTrace();
-            file.exists();
-        }
-    }catch (Exception e){
-        e.printStackTrace();}
     }
 }
