@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
         public void run()	//Этот метод будет выполнен в побочном потоке
         {
             Filewriter filewriter = new Filewriter();
-            filewriter.write(getApplicationContext(),id_file,binding.Userid);
-            filewriter.write(getApplicationContext(),bot_token_file,binding.BotToken);
-            filewriter.write(getApplicationContext(),text_file,binding.Text);
+            filewriter.write(getApplicationContext(),id_file,binding.UserId.getEditText());
+            filewriter.write(getApplicationContext(),bot_token_file,binding.BotToken.getEditText());
+            filewriter.write(getApplicationContext(),text_file,binding.Text.getEditText());
 
         }
     }
@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         {
             Filereader filereader = new Filereader();
             filereader.read(getApplicationContext(),id_file);
-            binding.Userid.setText(filereader.getText());
+            binding.UserId.getEditText().setText(filereader.getText());
             filereader.read(getApplicationContext(),bot_token_file);
-            binding.BotToken.setText(filereader.getText());
+            binding.BotToken.getEditText().setText(filereader.getText());
             filereader.read(getApplicationContext(),text_file);
-            binding.Text.setText(filereader.getText());
+            binding.Text.getEditText().setText(filereader.getText());
         }
     }
     static IThread secondThread;
@@ -49,8 +49,13 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        thirdThread = new OThread();
-        thirdThread.start();
+        Filereader filereader = new Filereader();
+        filereader.read(getApplicationContext(),id_file);
+        binding.UserId.getEditText().setText(filereader.getText());
+        filereader.read(getApplicationContext(),bot_token_file);
+        binding.BotToken.getEditText().setText(filereader.getText());
+        filereader.read(getApplicationContext(),text_file);
+        binding.Text.getEditText().setText(filereader.getText());
         startService(new Intent(this,MyService.class));
         binding.button.setOnClickListener(v -> {
             secondThread = new IThread();

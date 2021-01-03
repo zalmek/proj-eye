@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="button">Включить</string>
+    <string name="label">UserId</string>
+    <string name="label1">Text</string>
+    <string name="label2">Bot_Token</string>
 </resources>

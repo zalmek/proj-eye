@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">chargeMessenger</string>
-    <string name="button">Включить</string>
+    <string name="button">Сохранить</string>
     <string name="userid">Userid</string>
     <string name="bot_token">Bot_token</string>
     <string name="text">Text</string>
+    <string name="label">UserId</string>
+    <string name="label1">Text</string>
+    <string name="label2">Bot_Token</string>
 </resources>
