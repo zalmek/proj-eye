@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Writer implements Writable {
+public class Filewriter implements Writable {
 
     @Override
     public void write(Context context, String filename, EditText obj) {
@@ -18,13 +18,10 @@ public class Writer implements Writable {
             File file = new File(rootDataDir, filename);
             try {
                 PrintWriter writer = new PrintWriter(new FileWriter(file));
-                writer.printf("%s", obj.getText()); //Записываем текст в файл
-                writer.close(); // Закрываем файл
-//                Log.i(TAG, String.valueOf(file.canRead()));
-//                Log.i(TAG, String.valueOf(file.canWrite()));
+                writer.printf("%s", obj.getText());
+                writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                file.exists();
             }
         }catch (Exception e){
             e.printStackTrace();}

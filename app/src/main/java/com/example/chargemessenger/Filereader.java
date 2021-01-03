@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Reader implements Readable{
+public class Filereader implements Readable{
     private String text = null;
 
     public String getText() {

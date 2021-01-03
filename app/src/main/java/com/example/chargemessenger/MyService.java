@@ -6,7 +6,6 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 
 public class MyService extends Service {
-    private static final String TAG = "Servicelog";
     public MyService() {
     }
 

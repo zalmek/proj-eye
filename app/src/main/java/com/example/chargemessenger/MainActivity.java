@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run()	//Этот метод будет выполнен в побочном потоке
         {
-            Writer writer = new Writer();
-            writer.write(getApplicationContext(),id_file,binding.Userid);
-            writer.write(getApplicationContext(),bot_token_file,binding.BotToken);
-            writer.write(getApplicationContext(),text_file,binding.Text);
+            Filewriter filewriter = new Filewriter();
+            filewriter.write(getApplicationContext(),id_file,binding.Userid);
+            filewriter.write(getApplicationContext(),bot_token_file,binding.BotToken);
+            filewriter.write(getApplicationContext(),text_file,binding.Text);
 
         }
     }
@@ -30,19 +30,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run()	//Этот метод будет выполнен в побочном потоке
         {
-            Reader reader = new Reader();
-            reader.read(getApplicationContext(),id_file);
-            binding.Userid.setText(reader.getText());
-            reader.read(getApplicationContext(),bot_token_file);
-            binding.BotToken.setText(reader.getText());
-            reader.read(getApplicationContext(),text_file);
-            binding.Text.setText(reader.getText());
+            Filereader filereader = new Filereader();
+            filereader.read(getApplicationContext(),id_file);
+            binding.Userid.setText(filereader.getText());
+            filereader.read(getApplicationContext(),bot_token_file);
+            binding.BotToken.setText(filereader.getText());
+            filereader.read(getApplicationContext(),text_file);
+            binding.Text.setText(filereader.getText());
         }
     }
     static IThread secondThread;
     public ActivityMainBinding binding;
     static OThread thirdThread;
-    private static final String TAG = "myLogs";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +52,10 @@ public class MainActivity extends AppCompatActivity {
         thirdThread = new OThread();
         thirdThread.start();
         startService(new Intent(this,MyService.class));
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                secondThread = new IThread();
-                secondThread.start();
-               Toast.makeText(getApplicationContext(),"Action completed. App is ready. You can quit.",Toast.LENGTH_LONG).show();
-            }
+        binding.button.setOnClickListener(v -> {
+            secondThread = new IThread();
+            secondThread.start();
+           Toast.makeText(getApplicationContext(),"Action completed. App is ready. You can quit.",Toast.LENGTH_LONG).show();
         });
     }
 }
