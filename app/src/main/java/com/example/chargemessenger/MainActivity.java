@@ -25,23 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    class OThread extends Thread
-    {
-        @Override
-        public void run()	//Этот метод будет выполнен в побочном потоке
-        {
-            Filereader filereader = new Filereader();
-            filereader.read(getApplicationContext(),id_file);
-            binding.UserId.getEditText().setText(filereader.getText());
-            filereader.read(getApplicationContext(),bot_token_file);
-            binding.BotToken.getEditText().setText(filereader.getText());
-            filereader.read(getApplicationContext(),text_file);
-            binding.Text.getEditText().setText(filereader.getText());
-        }
-    }
     static IThread secondThread;
     public ActivityMainBinding binding;
-    static OThread thirdThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
