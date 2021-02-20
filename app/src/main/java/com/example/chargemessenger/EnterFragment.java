@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class EnterFragment extends Fragment {
-    private FragmentEnterBinding binding;
+    private FragmentEnterBinding fragmentbinding;
     static IThread secondThread;
     public static String id_file = "id.txt";
     public static String bot_token_file = "bot_token.txt";
@@ -31,8 +31,8 @@ public class EnterFragment extends Fragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentEnterBinding.inflate(inflater, container, false);
-        return binding.getRoot();}
+        fragmentbinding = FragmentEnterBinding.inflate(inflater, container, false);
+        return fragmentbinding.getRoot();}
 //        filereader.read(id_file);
 //        binding.UserId.getEditText().setText(filereader.getText());
 //        filereader.read(bot_token_file);
@@ -50,15 +50,15 @@ public class EnterFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        fragmentbinding = null;
     }
     class IThread extends Thread {
         @Override
         public void run()    //Этот метод будет выполнен в побочном потоке
         {
-            filewriter.write(id_file, binding.UserId.getEditText());
-            filewriter.write(bot_token_file, binding.BotToken.getEditText());
-            filewriter.write(text_file, binding.Text.getEditText());
+            filewriter.write(id_file, fragmentbinding.UserId.getEditText());
+            filewriter.write(bot_token_file, fragmentbinding.BotToken.getEditText());
+            filewriter.write(text_file, fragmentbinding.Text.getEditText());
 
         }
     }

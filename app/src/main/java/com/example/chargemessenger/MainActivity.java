@@ -15,6 +15,8 @@ import com.example.chargemessenger.databinding.ActivityMainBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+import static android.view.View.INVISIBLE;
+
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     public ActivityMainBinding binding;
@@ -22,13 +24,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
         Fragment fragment = new EnterFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         EnterFragment enterFragment = new EnterFragment();
-        ft.replace(R.id.fragment_container_view_tag, enterFragment);
+        ft.replace(R.id.activityid, enterFragment);
+        binding.progressBar.setVisibility(INVISIBLE);
         ft.commit();
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
     }
 }
