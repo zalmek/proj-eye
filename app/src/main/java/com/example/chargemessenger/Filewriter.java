@@ -9,10 +9,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.qualifiers.ApplicationContext;
+
 public class Filewriter implements Writable {
+    private final Context context;
+
+    @Inject
+    Filewriter(@ApplicationContext Context context) {
+        this.context = context;
+    }
 
     @Override
-    public void write(Context context, String filename, EditText obj) {
+    public void write(String filename, EditText obj) {
         try {
             String rootDataDir = context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
             File file = new File(rootDataDir, filename);

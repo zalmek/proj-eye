@@ -8,14 +8,27 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Filereader implements Readable{
+import javax.inject.Inject;
+
+import dagger.hilt.android.qualifiers.ApplicationContext;
+
+
+public class Filereader implements Readable {
     private String text = null;
+    private final Context context;
+
+    @Inject
+    Filereader(@ApplicationContext Context context) {
+        this.context = context;
+    }
+
 
     public String getText() {
         return text;
     }
+
     @Override
-    public void read(Context context,String filename) {
+    public void read(String filename) {
         try {
             String rootDataDir = context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
             File file = new File(rootDataDir, filename);
