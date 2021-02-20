@@ -16,8 +16,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 public class Filewriter implements Writable {
     private final Context context;
 
-    @Inject
-    Filewriter(@ApplicationContext Context context) {
+    @Inject Filewriter(@ApplicationContext Context context) {
         this.context = context;
     }
 

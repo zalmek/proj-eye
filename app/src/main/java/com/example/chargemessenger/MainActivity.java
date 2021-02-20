@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
     public static String id_file = "id.txt";
     public static String bot_token_file = "bot_token.txt";
     public static String text_file = "text.txt";
-    @Inject
-    Filewriter filewriter;
-    @Inject
-    Filereader filereader;
+    @Inject Filewriter filewriter;
+    @Inject Filereader filereader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

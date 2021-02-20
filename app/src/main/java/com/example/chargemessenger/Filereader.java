@@ -17,8 +17,7 @@ public class Filereader implements Readable {
     private String text = null;
     private final Context context;
 
-    @Inject
-    Filereader(@ApplicationContext Context context) {
+    @Inject Filereader(@ApplicationContext Context context) {
         this.context = context;
     }
 

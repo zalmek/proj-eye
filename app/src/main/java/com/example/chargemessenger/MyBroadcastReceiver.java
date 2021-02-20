@@ -20,8 +20,7 @@ import static com.example.chargemessenger.MainActivity.text_file;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
-    @Inject
-    Filereader filereader;
+    @Inject Filereader filereader;
 
     @Override
     public void onReceive(Context context, Intent intent) {
