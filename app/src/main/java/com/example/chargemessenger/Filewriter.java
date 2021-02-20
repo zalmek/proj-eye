@@ -24,9 +24,8 @@ public class Filewriter implements Writable {
     public void write(String filename, EditText obj) {
         try {
             String rootDataDir = context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
-            File file = new File(rootDataDir, filename);
             try {
-                PrintWriter writer = new PrintWriter(new FileWriter(file));
+                PrintWriter writer = new PrintWriter(new FileWriter(new File(rootDataDir, filename)));
                 writer.printf("%s", obj.getText());
                 writer.close();
             } catch (IOException e) {

@@ -14,10 +14,6 @@ import java.net.URLConnection;
 
 import javax.inject.Inject;
 
-import static com.example.chargemessenger.MainActivity.bot_token_file;
-import static com.example.chargemessenger.MainActivity.id_file;
-import static com.example.chargemessenger.MainActivity.text_file;
-
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
     @Inject Filereader filereader;
@@ -30,13 +26,13 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             StrictMode.setThreadPolicy(policy);
             String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s ";
 
-            filereader.read(bot_token_file);
+            filereader.read(EnterFragment.bot_token_file);
             String apiToken = filereader.getText();
 
-            filereader.read(id_file);
+            filereader.read(EnterFragment.id_file);
             String chatId = filereader.getText() ;
 
-            filereader.read(text_file);
+            filereader.read(EnterFragment.text_file);
             String text = filereader.getText();
 
             urlString = String.format(urlString, apiToken, chatId, text);
