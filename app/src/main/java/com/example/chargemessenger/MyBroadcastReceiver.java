@@ -14,6 +14,9 @@ import java.net.URLConnection;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
     @Inject Filereader filereader;
