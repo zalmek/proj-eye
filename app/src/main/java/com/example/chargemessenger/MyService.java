@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+@AndroidEntryPoint
 public class MyService extends Service {
-    public MyService() {
-    }
+    public MyService(){}
+    @Inject MyBroadcastReceiver myBroadcastReceiver;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -17,6 +21,6 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Intent intent = getApplicationContext().registerReceiver(new MyBroadcastReceiver(), new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        getApplicationContext().registerReceiver(myBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 }

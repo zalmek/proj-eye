@@ -22,9 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class EnterFragment extends Fragment {
     private FragmentEnterBinding fragmentbinding;
     static IThread secondThread;
-    public static String id_file = "id.txt";
-    public static String bot_token_file = "bot_token.txt";
-    public static String text_file = "text.txt";
     @Inject Filewriter filewriter;
     @Inject Filereader filereader;
     @Override
@@ -32,13 +29,13 @@ public class EnterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentbinding = FragmentEnterBinding.inflate(inflater, container, false);
-        filereader.read(id_file);
+        filereader.read(getString(R.string.idfilename));
         fragmentbinding.UserId.getEditText().setText(filereader.getText());
-        filereader.read(bot_token_file);
+        filereader.read(getString(R.string.bot_tokenfilename));
         fragmentbinding.BotToken.getEditText().setText(filereader.getText());
-        filereader.read(text_file);
+        filereader.read(getString(R.string.textfilename));
         fragmentbinding.Text.getEditText().setText(filereader.getText());
-        getActivity().startService(new Intent(getContext(), MyService.class));
+        getActivity().startService(new Intent(getActivity().getApplicationContext(), MyService.class));
         fragmentbinding.button.setOnClickListener(v -> {
             secondThread = new IThread();
             secondThread.start();
@@ -55,9 +52,9 @@ public class EnterFragment extends Fragment {
         @Override
         public void run()    //Этот метод будет выполнен в побочном потоке
         {
-            filewriter.write(id_file, fragmentbinding.UserId.getEditText());
-            filewriter.write(bot_token_file, fragmentbinding.BotToken.getEditText());
-            filewriter.write(text_file, fragmentbinding.Text.getEditText());
+            filewriter.write(getString(R.string.idfilename), fragmentbinding.UserId.getEditText());
+            filewriter.write(getString(R.string.bot_tokenfilename), fragmentbinding.BotToken.getEditText());
+            filewriter.write(getString(R.string.textfilename), fragmentbinding.Text.getEditText());
 
         }
     }

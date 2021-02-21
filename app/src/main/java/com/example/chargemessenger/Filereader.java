@@ -15,10 +15,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 
 public class Filereader implements Readable {
     private String text = null;
-    private final Context context;
+    Context context;
 
     @Inject Filereader(@ApplicationContext Context context) {
         this.context = context;
+    }
+    public void setContext(Context context){
+        this.context=context;
     }
 
 

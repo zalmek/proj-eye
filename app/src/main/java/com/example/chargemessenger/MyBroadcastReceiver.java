@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -19,27 +20,31 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
+    int currentlvl;
     @Inject Filereader filereader;
+    @Inject MyBroadcastReceiver(){
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 5) {
+        currentlvl=intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
+        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl==100) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
+            filereader.setContext(context);
             StrictMode.setThreadPolicy(policy);
             String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s ";
 
-            filereader.read(EnterFragment.bot_token_file);
+            filereader.read(context.getString(R.string.bot_tokenfilename));
             String apiToken = filereader.getText();
 
-            filereader.read(EnterFragment.id_file);
+            filereader.read(context.getString(R.string.idfilename));
             String chatId = filereader.getText() ;
 
-            filereader.read(EnterFragment.text_file);
+            filereader.read(context.getString(R.string.textfilename));
             String text = filereader.getText();
 
             urlString = String.format(urlString, apiToken, chatId, text);
-
+            Toast.makeText(context, urlString, Toast.LENGTH_SHORT).show();
             try {
                 URL url = new URL(urlString);
                 URLConnection conn = url.openConnection();
@@ -48,8 +53,13 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
     }
-        else Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1)));
+        else{
+            Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1)));
+            Toast.makeText(context, currentlvl, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN), Toast.LENGTH_SHORT).show();
+
         }
+    }
 }
 
 
