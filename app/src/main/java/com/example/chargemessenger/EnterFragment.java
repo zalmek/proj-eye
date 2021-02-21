@@ -32,21 +32,20 @@ public class EnterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentbinding = FragmentEnterBinding.inflate(inflater, container, false);
-        return fragmentbinding.getRoot();}
-//        filereader.read(id_file);
-//        binding.UserId.getEditText().setText(filereader.getText());
-//        filereader.read(bot_token_file);
-//        binding.BotToken.getEditText().setText(filereader.getText());
-//        filereader.read(text_file);
-//        binding.Text.getEditText().setText(filereader.getText());
-//        getActivity().startService(new Intent(getContext(), MyService.class));
-//        binding.button.setOnClickListener(v -> {
-//            secondThread = new IThread();
-//            secondThread.start();
-//            Toast.makeText(getContext(), "Action completed. App is ready. You can quit.", Toast.LENGTH_LONG).show();
-//        });
-//    }
-
+        filereader.read(id_file);
+        fragmentbinding.UserId.getEditText().setText(filereader.getText());
+        filereader.read(bot_token_file);
+        fragmentbinding.BotToken.getEditText().setText(filereader.getText());
+        filereader.read(text_file);
+        fragmentbinding.Text.getEditText().setText(filereader.getText());
+        getActivity().startService(new Intent(getContext(), MyService.class));
+        fragmentbinding.button.setOnClickListener(v -> {
+            secondThread = new IThread();
+            secondThread.start();
+            Toast.makeText(getContext(), "Action completed. App is ready. You can quit.", Toast.LENGTH_LONG).show();
+        });
+        return fragmentbinding.getRoot();
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

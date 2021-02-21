@@ -23,15 +23,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+        setContentView(view);
         Fragment fragment = new EnterFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         EnterFragment enterFragment = new EnterFragment();
         ft.replace(R.id.activityid, enterFragment);
-        binding.progressBar.setVisibility(INVISIBLE);
+        binding.progressBar.setVisibility(View.GONE);
         ft.commit();
     }
 }
