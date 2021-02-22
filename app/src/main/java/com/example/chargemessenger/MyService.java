@@ -14,9 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class MyService extends Service {
     public MyService(){}
-    private static final int NOTIFY_ID = 229;
-    // Идентификатор канала
-    private static String CHANNEL_ID = "Chargemes channel";
     @Inject MyBroadcastReceiver myBroadcastReceiver;
 
     @Override
@@ -27,7 +24,7 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        getApplicationContext().registerReceiver(myBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        myBroadcastReceiver.context.registerReceiver(myBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         }
 
     @Override

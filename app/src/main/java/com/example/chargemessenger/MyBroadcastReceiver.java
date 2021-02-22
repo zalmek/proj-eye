@@ -16,13 +16,16 @@ import java.net.URLConnection;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 
 @AndroidEntryPoint
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
     int currentlvl;
+    Context context;
     @Inject Filereader filereader;
-    @Inject MyBroadcastReceiver(){
+    @Inject MyBroadcastReceiver(@ApplicationContext Context context){
+        this.context=context;
     }
 
     @Override
@@ -54,8 +57,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     }
         else{
             Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1)));
-            Toast.makeText(context, currentlvl, Toast.LENGTH_SHORT).show();
-            Toast.makeText(context, intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, currentlvl, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN), Toast.LENGTH_SHORT).show();
 
         }
     }
