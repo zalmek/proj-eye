@@ -28,9 +28,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         currentlvl=intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
-        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl==100) {
+        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl!=100) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            filereader.setContext(context);
             StrictMode.setThreadPolicy(policy);
             String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s ";
 

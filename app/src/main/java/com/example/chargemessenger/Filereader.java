@@ -20,15 +20,9 @@ public class Filereader implements Readable {
     @Inject Filereader(@ApplicationContext Context context) {
         this.context = context;
     }
-    public void setContext(Context context){
-        this.context=context;
-    }
-
-
     public String getText() {
         return text;
     }
-
     @Override
     public void read(String filename) {
         try {
