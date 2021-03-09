@@ -19,7 +19,6 @@ public class BatLvlFragment extends Fragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        batLvlFragment.waveView.setVisibility(View.VISIBLE);
         batLvlFragment = FragmentBatLvlBinding.inflate(inflater, container, false);
         batLvlFragment.extendedFab.setOnClickListener(v ->
         {
