@@ -14,19 +14,21 @@ import com.example.chargemessenger.databinding.FragmentBatLvlBinding;
 import org.jetbrains.annotations.NotNull;
 
 public class BatLvlFragment extends Fragment {
+    private  FragmentBatLvlBinding batLvlFragment;
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        com.example.chargemessenger.databinding.FragmentBatLvlBinding batLvlBinding = FragmentBatLvlBinding.inflate(inflater, container, false);
-        batLvlBinding.extendedFab.setOnClickListener(v ->
+        batLvlFragment.waveView.setVisibility(View.VISIBLE);
+        filereader.read(getString(R.string.batlvl_filename));
+        batLvlFragment = FragmentBatLvlBinding.inflate(inflater, container, false);
+        batLvlFragment.extendedFab.setOnClickListener(v ->
         {
             FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_open_enter,R.anim.fragment_fade_exit);
             transaction.replace(R.id.activityid,new EnterFragment() );
             transaction.commit();
         });
-        batLvlBinding.waveView.setProgress(23);
-        return batLvlBinding.getRoot();
+        return batLvlFragment.getRoot();
     }
 }

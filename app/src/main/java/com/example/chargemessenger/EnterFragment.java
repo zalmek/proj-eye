@@ -40,7 +40,7 @@ public class EnterFragment extends Fragment {
             secondThread.start();
             Toast.makeText(getContext(), "Action completed. App is ready. You can quit.", Toast.LENGTH_LONG).show();
             FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_open_enter,R.anim.fragment_close_exit);
             transaction.replace(R.id.activityid,new BatLvlFragment() );
             transaction.commit();
         });
