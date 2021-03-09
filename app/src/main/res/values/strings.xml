@@ -21,4 +21,6 @@
     <string name="idfilename">"id.txt"</string>
     <string name="textfilename">"text.txt"</string>
     <string name="bot_tokenfilename">"bot_token.txt"</string>
+    <string name="extended_fab_content_desc">Settings</string>
+    <string name="extended_fab_label">Settings</string>
 </resources>

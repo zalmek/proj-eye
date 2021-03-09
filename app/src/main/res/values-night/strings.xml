@@ -4,4 +4,6 @@
     <string name="label">UserId</string>
     <string name="label1">Text</string>
     <string name="label2">Bot_Token</string>
+    <string name="extended_fab_content_desc">Settings</string>
+    <string name="extended_fab_label">Settings</string>
 </resources>
