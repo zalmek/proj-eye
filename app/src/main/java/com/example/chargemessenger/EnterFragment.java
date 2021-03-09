@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.chargemessenger.databinding.FragmentEnterBinding;
 
@@ -37,6 +39,10 @@ public class EnterFragment extends Fragment {
             secondThread = new IThread();
             secondThread.start();
             Toast.makeText(getContext(), "Action completed. App is ready. You can quit.", Toast.LENGTH_LONG).show();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.activityid,new BatLvlFragment() );
+            transaction.commit();
         });
         return enterBinding.getRoot();
     }

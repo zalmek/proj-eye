@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         EnterFragment enterFragment = new EnterFragment();
         transaction.replace(R.id.activityid, enterFragment);
         transaction.commit();
+        binding.progressBar.setVisibility(View.GONE);
 
     }
 
