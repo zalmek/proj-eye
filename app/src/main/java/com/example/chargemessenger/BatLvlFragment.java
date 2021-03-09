@@ -20,7 +20,6 @@ public class BatLvlFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         batLvlFragment.waveView.setVisibility(View.VISIBLE);
-        filereader.read(getString(R.string.batlvl_filename));
         batLvlFragment = FragmentBatLvlBinding.inflate(inflater, container, false);
         batLvlFragment.extendedFab.setOnClickListener(v ->
         {
