@@ -13,13 +13,22 @@ import com.example.chargemessenger.databinding.FragmentBatLvlBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class BatLvlFragment extends Fragment {
     private  FragmentBatLvlBinding batLvlFragment;
+    @Inject Filereader filereader;
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         batLvlFragment = FragmentBatLvlBinding.inflate(inflater, container, false);
+        filereader.read("batlvl.txt");
+//        Toast.makeText(getContext(),filereader.getText(), Toast.LENGTH_SHORT).show();
+        batLvlFragment.waveView.setProgress(Integer.parseInt(filereader.getText()));
         batLvlFragment.extendedFab.setOnClickListener(v ->
         {
             FragmentManager fragmentManager = getParentFragmentManager();

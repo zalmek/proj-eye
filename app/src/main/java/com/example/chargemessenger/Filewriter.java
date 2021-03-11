@@ -35,4 +35,18 @@ public class Filewriter implements Writable {
         }catch (Exception e){
             e.printStackTrace();}
     }
+    public void write(String filename, String string) {
+        try {
+            String rootDataDir = context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath();
+            try {
+                PrintWriter writer = new PrintWriter(new FileWriter(new File(rootDataDir, filename)));
+                writer.printf("%s", string);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            e.printStackTrace();}
+    }
+
 }

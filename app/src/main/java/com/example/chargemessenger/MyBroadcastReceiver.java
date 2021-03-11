@@ -21,9 +21,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 @AndroidEntryPoint
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
-    int currentlvl;
+    public static int currentlvl=0;
     Context context;
     @Inject Filereader filereader;
+    @Inject Filewriter filewriter;
     @Inject MyBroadcastReceiver(@ApplicationContext Context context){
         this.context=context;
     }
@@ -31,7 +32,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         currentlvl=intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
-        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl!=100) {
+        filewriter.write("batlvl.txt",String.valueOf(currentlvl));
         if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl==100) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -63,7 +64,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
         }
     }
-}}
+}
 
 
 
