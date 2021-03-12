@@ -6,17 +6,16 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.os.StrictMode;
 import android.util.Log;
-import android.widget.Toast;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.IOException;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 @AndroidEntryPoint
 public class MyBroadcastReceiver extends BroadcastReceiver {
@@ -46,22 +45,28 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
             filereader.read(context.getString(R.string.textfilename));
             String text = filereader.getText();
-
             urlString = String.format(urlString, apiToken, chatId, text);
-            Toast.makeText(context, urlString, Toast.LENGTH_SHORT).show();
             try {
-                URL url = new URL(urlString);
-                URLConnection conn = url.openConnection();
-                InputStream is = new BufferedInputStream(conn.getInputStream());
-            } catch (Exception e) {
+                run(urlString);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-    }
+        }
         else{
             Log.i(TAG,String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1)));
 //            Toast.makeText(context, currentlvl, Toast.LENGTH_SHORT).show();
 //            Toast.makeText(context, intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN), Toast.LENGTH_SHORT).show();
 
+        }
+    }
+    String run(String url) throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            return response.body().string();
         }
     }
 }

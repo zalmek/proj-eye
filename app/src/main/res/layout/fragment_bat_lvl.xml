@@ -27,7 +27,7 @@
         android:id="@+id/wave_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#81BCEA"
+        android:background="#F3F7FA"
         app:above_wave_color="#00FF0A"
         app:blow_wave_color="#00FF0C"
         app:progress="50"
