@@ -1,5 +1,6 @@
 package com.example.chargemessenger;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,8 @@ public class BatLvlFragment extends Fragment {
         batLvlFragment = FragmentBatLvlBinding.inflate(inflater, container, false);
         filereader.read("batlvl.txt");
 //        Toast.makeText(getContext(),filereader.getText(), Toast.LENGTH_SHORT).show();
-        batLvlFragment.waveView.setProgress(Integer.parseInt(filereader.getText()));
+        LateProgressSet lateProgressSet = new LateProgressSet();
+        lateProgressSet.execute();
         batLvlFragment.extendedFab.setOnClickListener(v ->
         {
             FragmentManager fragmentManager = getParentFragmentManager();
@@ -38,4 +40,29 @@ public class BatLvlFragment extends Fragment {
         });
         return batLvlFragment.getRoot();
     }
+
+     void setProgress(){
+         batLvlFragment.waveView.setProgress(Integer.parseInt(filereader.getText()));
+    }
+
+
+    class LateProgressSet extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            synchronized(this) {
+                try {
+                    wait(10);
+                } catch(InterruptedException ie){}
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            setProgress();
+        }
+    }
+
 }
