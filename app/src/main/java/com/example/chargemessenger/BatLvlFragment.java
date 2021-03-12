@@ -42,6 +42,7 @@ public class BatLvlFragment extends Fragment {
     }
 
      void setProgress(){
+
          batLvlFragment.waveView.setProgress(Integer.parseInt(filereader.getText()));
     }
 
@@ -55,7 +56,6 @@ public class BatLvlFragment extends Fragment {
                     wait(10);
                 } catch(InterruptedException ie){}
             }
-
             return null;
         }
 
@@ -64,5 +64,4 @@ public class BatLvlFragment extends Fragment {
             setProgress();
         }
     }
-
 }
