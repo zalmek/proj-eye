@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class EnterFragment extends Fragment {
     private FragmentEnterBinding enterBinding;
     static IThread secondThread;
+    static int controlSum=0;
     @Inject Filewriter filewriter;
     @Inject Filereader filereader;
     @Override
@@ -30,8 +31,19 @@ public class EnterFragment extends Fragment {
         // Inflate the layout for this fragment
         enterBinding = FragmentEnterBinding.inflate(inflater, container, false);
         filereader.read(getString(R.string.idfilename));
+        if (filereader.getText().length()>=5)
+            controlSum+=1;
         enterBinding.UserId.getEditText().setText(filereader.getText());
         filereader.read(getString(R.string.bot_tokenfilename));
+        if (filereader.getText().length()>20)
+            controlSum+=1;
+        if (controlSum==2){
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_open_enter,R.anim.fragment_close_exit);
+            transaction.replace(R.id.activityid,new BatLvlFragment() );
+            transaction.commit();
+            controlSum+=1;
+        }
         enterBinding.BotToken.getEditText().setText(filereader.getText());
         filereader.read(getString(R.string.textfilename));
         enterBinding.Text.getEditText().setText(filereader.getText());

@@ -42,8 +42,8 @@ public class BatLvlFragment extends Fragment {
     }
 
      void setProgress(){
-
-         batLvlFragment.waveView.setProgress(Integer.parseInt(filereader.getText()));
+         int lvl=Integer.parseInt(filereader.getText());
+         batLvlFragment.waveView.setProgress(lvl);
     }
 
 
