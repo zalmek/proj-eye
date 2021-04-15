@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/placeholder"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/placeholder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BatLvlFragment">
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/extended_fab_content_desc"
-        android:text="@string/extended_fab_label"
-        app:icon="@drawable/return_back_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/wave_view"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <com.john.waveview.WaveView
         android:id="@+id/wave_view"
@@ -33,7 +17,24 @@
         app:progress="50"
         app:wave_height="little"
         app:wave_hz="normal"
-        app:wave_length="middle" />
+        app:wave_length="middle">
+
+    </com.john.waveview.WaveView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="82dp"
+        android:layout_height="137dp"
+        android:layout_weight="1"
+        android:text="@string/textview"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,12 +17,15 @@ public class Filereader implements Readable {
     private String text = null;
     Context context;
 
-    @Inject Filereader(@ApplicationContext Context context) {
+    @Inject
+    Filereader(@ApplicationContext Context context) {
         this.context = context;
     }
+
     public String getText() {
         return text;
     }
+
     @Override
     public void read(String filename) {
         try {
@@ -50,7 +53,7 @@ public class Filereader implements Readable {
                 }
             }
             String contents = new String(bytes);
-            text=contents;
+            text = contents;
         } catch (Exception e) {
             e.printStackTrace();
         }

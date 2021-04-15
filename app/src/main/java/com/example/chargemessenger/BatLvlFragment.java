@@ -20,8 +20,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class BatLvlFragment extends Fragment {
-    private  FragmentBatLvlBinding batLvlFragment;
-    @Inject Filereader filereader;
+    private FragmentBatLvlBinding batLvlFragment;
+    @Inject
+    Filereader filereader;
+
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,19 +33,13 @@ public class BatLvlFragment extends Fragment {
 //        Toast.makeText(getContext(),filereader.getText(), Toast.LENGTH_SHORT).show();
         LateProgressSet lateProgressSet = new LateProgressSet();
         lateProgressSet.execute();
-        batLvlFragment.extendedFab.setOnClickListener(v ->
-        {
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_open_enter,R.anim.fragment_fade_exit);
-            transaction.replace(R.id.activityid,new EnterFragment() );
-            transaction.commit();
-        });
         return batLvlFragment.getRoot();
     }
 
-     void setProgress(){
-         int lvl=Integer.parseInt(filereader.getText());
-         batLvlFragment.waveView.setProgress(lvl);
+    void setProgress() {
+        int lvl = Integer.parseInt(filereader.getText());
+        batLvlFragment.waveView.setProgress(lvl);
+        batLvlFragment.textView.setText(String.valueOf(lvl));
     }
 
 
@@ -51,10 +47,11 @@ public class BatLvlFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            synchronized(this) {
+            synchronized (this) {
                 try {
                     wait(10);
-                } catch(InterruptedException ie){}
+                } catch (InterruptedException ie) {
+                }
             }
             return null;
         }
