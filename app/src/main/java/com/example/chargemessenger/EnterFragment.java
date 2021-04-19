@@ -40,8 +40,8 @@ public class EnterFragment extends Fragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        File f = new File(getContext().getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath()+ getString(R.string.textfilename));
-        if (f.exists()){
+        File f = new File(getContext().getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath()+ "/"+getString(R.string.textfilename));
+        if (!f.exists()){
             IThread iTheread = new IThread();
             iTheread.start();}
         enterBinding = FragmentEnterBinding.inflate(inflater, container, false);

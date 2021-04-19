@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 
 import com.example.chargemessenger.Network.Network;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -57,7 +59,11 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             String urlString = "https://api.telegram.org/bot1448041949:AAGKZXLqa7MTi25uE3JflofJrFadzY0KQSc/sendMessage?chat_id=%s&text=full_charge ";
-
+//iuh
+            File f = new File(context.getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath()).getAbsolutePath()+ "/"+context.getString(R.string.idfilename));
+            if (!f.exists()){
+                IThread iTheread = new IThread();
+                iTheread.start();}
             filereader.read(context.getString(R.string.idfilename));
             String chatId = filereader.getText();
             if (chatId.length() < 5){
