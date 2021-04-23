@@ -1,17 +1,13 @@
 package com.example.chargemessenger.Network;
 
-import android.nfc.Tag;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.chargemessenger.Filereader;
-import com.example.chargemessenger.R;
-import com.example.chargemessenger.User;
+import com.example.chargemessenger.Database.ConfigRepository;
 
 import javax.inject.Inject;
 
-import dagger.Provides;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,7 +18,7 @@ public class Network {
     Retrofit retrofit;
     API api;
     @Inject
-    Filereader filereader;
+    ConfigRepository repository;
     private static final String TAG = "LogNetwork";
     @Inject
     public Network() {
@@ -32,11 +28,11 @@ public class Network {
                 .build();
         this.api = retrofit.create(API.class);
     }
+
     public void getOne(Handler handler){
-        filereader.read("text.txt");
-        api.getOne(filereader.getText()).enqueue(new Callback<User>() {
+        api.getUserId(repository.getConfig().getUuid()).enqueue(new Callback<Integer>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
                 Message msg = new Message();
                 msg.obj=response.body();
                 Log.i(TAG,"smth");
@@ -44,7 +40,7 @@ public class Network {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Integer> call, Throwable t) {
                 t.printStackTrace();
                 Log.i(TAG,"Failure");
             }

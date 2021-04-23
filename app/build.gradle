@@ -55,8 +55,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.john990:WaveView:v0.9'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-    implementation 'org.postgresql:postgresql:42.2.10'
 
+    //Room
+    implementation "androidx.room:room-runtime:2.3.0"
+    //annotationProcessor "androidx.room:room-compiler:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
 }
 repositories {
     mavenCentral()

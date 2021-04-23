@@ -1,5 +1,6 @@
-package com.example.chargemessenger;
+package com.example.chargemessenger.MVVM.View;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
 
+import com.example.chargemessenger.Database.ConfigRepository;
+import com.example.chargemessenger.Logic.MyService;
 import com.example.chargemessenger.databinding.FragmentBatLvlBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,25 +24,30 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class BatLvlFragment extends Fragment {
     private FragmentBatLvlBinding batLvlFragment;
     @Inject
-    Filereader filereader;
+    ConfigRepository repository;
+    MutableLiveData<String> batlvl = new MutableLiveData<>();
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getContext().startService(new Intent(getContext(), MyService.class));
         batLvlFragment = FragmentBatLvlBinding.inflate(inflater, container, false);
-        filereader.read("batlvl.txt");
-//        Toast.makeText(getContext(),filereader.getText(), Toast.LENGTH_SHORT).show();
+
+        repository.getLiveDataConfig().observe(getViewLifecycleOwner(), config -> {
+            batLvlFragment.textView.setText(config.getBatteryLevel());
+            batLvlFragment.waveView.setProgress(config.getBatteryLevel());
+        });
+
         LateProgressSet lateProgressSet = new LateProgressSet();
         lateProgressSet.execute();
         return batLvlFragment.getRoot();
     }
 
-    void setProgress() {
-        int lvl = Integer.parseInt(filereader.getText());
-        batLvlFragment.waveView.setProgress(lvl);
-        batLvlFragment.textView.setText(String.valueOf(lvl));
-    }
+//    public void setProgress() {
+//        batLvlFragment.waveView.setProgress(lvl);
+//        batLvlFragment.textView.setText(String.valueOf(lvl));
+//    }
 
 
     class LateProgressSet extends AsyncTask<Void, Void, Void> {
@@ -58,7 +65,7 @@ public class BatLvlFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            setProgress();
+//            setProgress();
         }
     }
 }
