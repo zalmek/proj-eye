@@ -1,9 +1,5 @@
 package com.example.chargemessenger.Network;
 
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-
 import com.example.chargemessenger.Database.ConfigRepository;
 import com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel;
 
@@ -15,36 +11,34 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Network {
+public class OpenTelUrlNetwork {
     Retrofit retrofit;
     API api;
     @Inject
     ConfigViewModel mViewModel;
     private static final String TAG = "LogNetwork";
+
     @Inject
-    public Network() {
+    public OpenTelUrlNetwork() {
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("https://chargemessenger.herokuapp.com/")
+                .baseUrl("https://api.telegram.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         this.api = retrofit.create(API.class);
+
     }
 
-    public void getOne(Handler handler){
+    public void openUrl() {
         if (mViewModel.getConfig().getValue() != null) {
-            api.getUserId(mViewModel.getConfig().getValue().getUuid()).enqueue(new Callback<Integer>() {
+            api.getObject(mViewModel.getConfig().getValue().getUserid().toString()).enqueue(new Callback() {
                 @Override
-                public void onResponse(Call<Integer> call, Response<Integer> response) {
-                    Message msg = new Message();
-                    msg.obj = response.body();
-                    Log.i(TAG, "smth");
-                    handler.sendMessage(msg);
+                public void onResponse(Call call, Response response) {
+
                 }
 
                 @Override
-                public void onFailure(Call<Integer> call, Throwable t) {
-                    t.printStackTrace();
-                    Log.i(TAG, "Failure");
+                public void onFailure(Call call, Throwable t) {
+
                 }
             });
         }

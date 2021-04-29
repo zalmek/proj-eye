@@ -13,8 +13,7 @@ public class ConfigRepository {
     private LiveData<List<Configs>> mAllDbConfigs;
     private Context context;
 
-    @Inject
-    public ConfigRepository(@ApplicationContext Context context) {
+    public ConfigRepository(Context context) {
         this.context = context;
 
         ConfigsDatabase db = ConfigsDatabase.getDatabase(context);

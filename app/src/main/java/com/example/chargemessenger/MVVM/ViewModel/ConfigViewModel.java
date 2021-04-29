@@ -12,60 +12,55 @@ import javax.inject.Inject;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 
 public class ConfigViewModel {
-    @Inject
     ConfigRepository repository;
 
-    private MutableLiveData<Configs> mConfig;
+    private MutableLiveData<Configs> mConfig = new MutableLiveData<>();
 
     @Inject
     public ConfigViewModel(@ApplicationContext Context context) {
-        mConfig = new MutableLiveData<>();
-        
-        mConfig.observe();
+        repository = new ConfigRepository(context);
+
+        repository.getAllDbConfigs().observeForever(configs -> {
+            if (configs.size() > 0) {
+                mConfig.setValue(configs.get(0));
+            }
+        });
     }
 
-    public MutableLiveData<Configs> getLiveDataConfig() {
-        if (mAllDbConfigs.getValue() != null && mAllDbConfigs.getValue().size() > 0) {
-            mConfig.setValue(mAllDbConfigs.getValue().get(0));
-        }
+    public MutableLiveData<Configs> getConfig() {
         return mConfig;
     };
 
-    public Configs getConfig() {
-        if (getLiveDataConfig().getValue() == null) {
-            ChangeConfig(null, null, null);
-        }
-
-        return mConfig.getValue();
-    };
-
     public void ChangeConfig(String uuid, Integer userId, Integer batteryLevel) {
-        Configs temp = getLiveDataConfig().getValue();
+        if (repository.getAllDbConfigs().getValue() != null) {
+            Configs temp = getConfig().getValue();
 
-        if (temp != null) {
-            if (uuid != null) {
-                temp.setUuid(uuid);
+            if (temp != null) {
+                if (uuid != null) {
+                    temp.setUuid(uuid);
+                }
+                if (userId != null) {
+                    temp.setUserid(userId);
+                }
+                if (batteryLevel != null) {
+                    temp.setBatteryLevel(batteryLevel);
+                }
+            } else {
+                temp = new Configs(
+                        uuid == null ? "" : uuid,
+                        userId == null ? 0 : userId,
+                        batteryLevel == null ? -1 : batteryLevel
+                );
             }
-            if (userId != null) {
-                temp.setUserid(userId);
-            }
-            if (batteryLevel != null) {
-                temp.setBatteryLevel(batteryLevel);
-            }
-        } else {
-            temp = new Configs(
-                    uuid == null ? "" : uuid,
-                    userId == null ? 0 : userId,
-                    batteryLevel == null ? -1 : batteryLevel
-            );
-        }
 
-        getLiveDataConfig().setValue(temp);
-        if (repository.getAllDbConfigs().getValue() == null || mAllDbConfigs.getValue().size() == 0) {
-            repository.AddToDatabase(temp);
+            getConfig().setValue(temp);
+            Configs finalTemp = temp;
+            if (repository.getAllDbConfigs().getValue().size() == 0 || repository.getAllDbConfigs().getValue().stream().noneMatch(configs -> configs.getId().equals(finalTemp.getId()))) {
+                repository.AddToDatabase(temp);
 
-        } else {
-            repository.UpdateInDatabase(temp);
+            } else {
+                repository.UpdateInDatabase(temp);
+            }
         }
     }
 }
