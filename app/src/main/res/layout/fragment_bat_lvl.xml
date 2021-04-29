@@ -7,19 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".MVVM.View.BatLvlFragment">
 
-    <com.john.waveview.WaveView
-        android:id="@+id/wave_view"
+    <com.narayanacharya.waveview.WaveView
+        android:id="@+id/waveView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F3F7FA"
-        app:above_wave_color="#00FF0A"
-        app:blow_wave_color="#00FF0C"
-        app:progress="50"
-        app:wave_height="little"
-        app:wave_hz="normal"
-        app:wave_length="middle">
-
-    </com.john.waveview.WaveView>
+        android:layout_gravity="center"
+        app:waveAmplitude="6.5"
+        app:waveBackgroundColor="#FFFFFF"
+        app:waveColor="#93F380"
+        app:waveDensity="5.0"
+        app:waveFrequency="2.0"
+        app:waveNumberOfWaves="5"
+        app:wavePhaseShift="-0.05"
+        app:wavePrimaryLineWidth="3.0"
+        app:waveSecondaryLineWidth="1.0"
+        app:waveXAxisPositionMultiplier="0.5" />
 
     <TextView
         android:id="@+id/textView"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -17,7 +18,6 @@ import com.example.chargemessenger.Database.ConfigRepository;
 import com.example.chargemessenger.Logic.MyService;
 import com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel;
 import com.example.chargemessenger.databinding.FragmentBatLvlBinding;
-import com.gelitenight.waveview.library.WaveView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class BatLvlFragment extends Fragment {
     private FragmentBatLvlBinding batLvlFragment;
-    WaveView waveView;
+//    WaveView waveView;
     @Inject
     ConfigViewModel mViewModel;
 
@@ -38,11 +38,11 @@ public class BatLvlFragment extends Fragment {
         // Inflate the layout for this fragment
         getContext().startService(new Intent(getContext(), MyService.class));
         batLvlFragment = FragmentBatLvlBinding.inflate(inflater, container, false);
-        waveView=new WaveView(getContext());
-        waveView.setShowWave(true);
+//        waveView=new WaveView(getContext());
+//        waveView.setShowWave(true);
         mViewModel.getConfig().observe(getViewLifecycleOwner(), config -> {
             batLvlFragment.textView.setText(config.getBatteryLevel().toString());
-//            batLvlFragment.waveView.setProgress(config.getBatteryLevel());
+            batLvlFragment.waveView.setWaveXAxisPositionMultiplier(1f-config.getBatteryLevel()*0.01f);
         });
 //        LateProgressSet lateProgressSet = new LateProgressSet();
 //        lateProgressSet.execute();

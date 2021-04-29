@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit);
                 transaction.replace(R.id.activityid, new BatLvlFragment());
                 transaction.commit();
+                mViewModel.getConfig().removeObserver(choosing);
             }
             else {
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.activityid, enterFragment);
                 transaction.commit();
                 binding.progressBar.setVisibility(View.GONE);
+                mViewModel.getConfig().removeObserver(choosing);
             }
         };
 
