@@ -45,7 +45,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         currentlvl = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
         mViewModel.ChangeConfig(null, null, currentlvl);
 
-        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl == 100) {
+        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl == 100 || intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 5) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             String urlString = "https://api.telegram.org/bot1448041949:AAGKZXLqa7MTi25uE3JflofJrFadzY0KQSc/sendMessage?chat_id=%s&text=full_charge ";
@@ -64,18 +64,9 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
                 }
             }
             openTelUrlNetwork.openUrl();
-            try {
-                // need to rewrite on Retrofit
-                throw new RuntimeException("Uncompleted method");
-            } catch (RuntimeException e) {
-                e.printStackTrace();
             }
-        } else {
-            Log.i(TAG, String.valueOf(intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)));
-
         }
-    }
-}
+        }
 
 
 

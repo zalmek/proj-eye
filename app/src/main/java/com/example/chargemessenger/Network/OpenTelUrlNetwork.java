@@ -21,7 +21,7 @@ public class OpenTelUrlNetwork {
     @Inject
     public OpenTelUrlNetwork() {
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.telegram.org/")
+                .baseUrl("https://api.telegram.org/bot1448041949:AAGKZXLqa7MTi25uE3JflofJrFadzY0KQSc/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         this.api = retrofit.create(API.class);
@@ -30,15 +30,15 @@ public class OpenTelUrlNetwork {
 
     public void openUrl() {
         if (mViewModel.getConfig().getValue() != null) {
-            api.getObject(mViewModel.getConfig().getValue().getUserid().toString()).enqueue(new Callback() {
+            api.getObject(mViewModel.getConfig().getValue().getUserid().toString(),"full_charge").enqueue(new Callback<Object>() {
                 @Override
-                public void onResponse(Call call, Response response) {
+                public void onResponse(Call<Object> call, Response<Object> response) {
 
                 }
 
                 @Override
-                public void onFailure(Call call, Throwable t) {
-
+                public void onFailure(Call<Object> call, Throwable t) {
+                    t.printStackTrace();
                 }
             });
         }

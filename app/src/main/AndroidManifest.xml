@@ -22,7 +22,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.ChargeMessenger">
+            android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <receiver
                 android:name=".Logic.BootNotifyReceiver"
                 android:enabled="true"

@@ -27,4 +27,6 @@
     <string name="textview">TextView</string>
     <string name="instr">Instruction</string>
     <string name="foregrfilename">"false.txt"</string>
+    <string name="more">quit</string>
+    <string name="content_description_more">desc</string>
 </resources>

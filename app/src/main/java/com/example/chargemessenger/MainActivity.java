@@ -1,11 +1,14 @@
 package com.example.chargemessenger;
 
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
@@ -39,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        binding.topAppBar.setOnMenuItemClickListener(item -> {
+            stopService(new Intent(getApplicationContext(), MyService.class));
+            finishAffinity();
+            return false;
+        }); {
+            // Handle navigation icon press
+        }
 
         choosing = (Observer<Configs>) config -> {
             if (config.getUuid().length() > 5) {
