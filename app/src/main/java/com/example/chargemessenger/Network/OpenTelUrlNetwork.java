@@ -11,6 +11,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+
 public class OpenTelUrlNetwork {
     Retrofit retrofit;
     API api;
@@ -33,7 +35,6 @@ public class OpenTelUrlNetwork {
             api.getObject(mViewModel.getConfig().getValue().getUserid().toString(),"full_charge").enqueue(new Callback<Object>() {
                 @Override
                 public void onResponse(Call<Object> call, Response<Object> response) {
-
                 }
 
                 @Override

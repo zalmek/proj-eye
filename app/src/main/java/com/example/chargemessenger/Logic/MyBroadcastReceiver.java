@@ -25,7 +25,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "RecTag";
     public static int currentlvl = 0;
-    public String CHatid ="";
+    public String CHatid = "";
     Context context;
     @Inject
     ConfigViewModel mViewModel;
@@ -43,30 +43,34 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         currentlvl = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-        mViewModel.ChangeConfig(null, null, currentlvl);
 
-        if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl == 100 || intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 5) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-            String urlString = "https://api.telegram.org/bot1448041949:AAGKZXLqa7MTi25uE3JflofJrFadzY0KQSc/sendMessage?chat_id=%s&text=full_charge ";
+        if (mViewModel.getConfig().getValue() != null) {
+            if (currentlvl != mViewModel.getConfig().getValue().getBatteryLevel()) {
+                mViewModel.ChangeConfig(null, null, currentlvl);
+                if (intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 2 && currentlvl % 10 == 0 || intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN) == 5) {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                    String urlString = "https://api.telegram.org/bot1448041949:AAGKZXLqa7MTi25uE3JflofJrFadzY0KQSc/sendMessage?chat_id=%s&text=full_charge ";
 
-            if (mViewModel.getConfig().getValue() != null) {
-                if (mViewModel.getConfig().getValue().getUserid().toString().length() < 5) {
-                    Handler handler = new Handler() {
-                        @Override
-                        public void handleMessage(@NonNull Message msg) {
-                            super.handleMessage(msg);
-                            Integer userId = (Integer) msg.obj;
-                            mViewModel.ChangeConfig(null, userId, null);
+                    if (mViewModel.getConfig().getValue() != null) {
+                        if (mViewModel.getConfig().getValue().getUserid().toString().length() < 5) {
+                            Handler handler = new Handler() {
+                                @Override
+                                public void handleMessage(@NonNull Message msg) {
+                                    super.handleMessage(msg);
+                                    Integer userId = (Integer) msg.obj;
+                                    mViewModel.ChangeConfig(null, userId, null);
+                                }
+                            };
+                            network.getOne(handler);
                         }
-                    };
-                    network.getOne(handler);
+                    }
+                    openTelUrlNetwork.openUrl();
                 }
             }
-            openTelUrlNetwork.openUrl();
-            }
         }
-        }
+    }
+}
 
 
 

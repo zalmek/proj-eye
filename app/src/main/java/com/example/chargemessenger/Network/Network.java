@@ -37,8 +37,8 @@ public class Network {
                 public void onResponse(Call<Integer> call, Response<Integer> response) {
                     Message msg = new Message();
                     msg.obj = response.body();
-                    Log.i(TAG, "smth");
                     handler.sendMessage(msg);
+                    Log.i(TAG, "smth");
                 }
 
                 @Override
