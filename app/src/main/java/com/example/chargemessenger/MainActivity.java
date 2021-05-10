@@ -79,12 +79,4 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         mViewModel.getConfig().removeObserver(choosing);
     }
-    class IThread extends Thread {
-        @Override
-        public void run()    //Этот метод будет выполнен в побочном потоке
-        {
-//            filewriter.write(getString(R.string.idfilename),"");
-//            filewriter.write(getString(R.string.textfilename),"");
-        }
-}
 }

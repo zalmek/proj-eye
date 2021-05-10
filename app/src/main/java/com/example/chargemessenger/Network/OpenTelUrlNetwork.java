@@ -30,9 +30,9 @@ public class OpenTelUrlNetwork {
 
     }
 
-    public void openUrl() {
+    public void openUrl(int currentlvl) {
         if (mViewModel.getConfig().getValue() != null) {
-            api.getObject(mViewModel.getConfig().getValue().getUserid().toString(),"full_charge").enqueue(new Callback<Object>() {
+            api.getObject(mViewModel.getConfig().getValue().getUserid().toString(),String.valueOf(currentlvl)).enqueue(new Callback<Object>() {
                 @Override
                 public void onResponse(Call<Object> call, Response<Object> response) {
                 }
