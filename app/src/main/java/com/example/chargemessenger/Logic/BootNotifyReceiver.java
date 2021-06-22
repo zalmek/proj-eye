@@ -37,7 +37,6 @@ public class BootNotifyReceiver extends BroadcastReceiver {
                         .setContentText("Click to open the app. Works background by default")
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setContentIntent(pendingIntent)
-                        .setPriority(Notification.PRIORITY_LOW)
                         .setCategory(Notification.CATEGORY_SERVICE)
                         .setOngoing(true)
                         .build();
