@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/Android_studio_projects/chargeMessenger/app/src/main/java/com/example/chargemessenger</OriginalElement>
+  <nodes>
+    <node x="-353.36363636363694" y="-109.77272727272748">com.example.chargemessenger.MVVM.View.EnterFragment</node>
+    <node x="106.65909090909054" y="-447.11363636363626">com.example.chargemessenger.Network.OpenTelUrlNetwork</node>
+    <node x="778.2926136363634" y="-277.50000000000006">com.example.chargemessenger.Database.Dao.ConfigDao</node>
+    <node x="-695.3868484848489" y="-665.1363636363635">com.example.chargemessenger.MainActivity</node>
+    <node x="-368.598484848485" y="-643.1363636363635">com.example.chargemessenger.MVVM.View.BatLvlFragment</node>
+    <node x="327.5085227272723" y="54.99999999999977">com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel</node>
+    <node x="-368.598484848485" y="-404.0">com.example.chargemessenger.Logic.MyBroadcastReceiver</node>
+    <node x="-726.1590909090924" y="-87.77272727272748">com.example.chargemessenger.Logic.BootNotifyReceiver</node>
+    <node x="385.806818181818" y="-447.11363636363626">com.example.chargemessenger.Network.API</node>
+    <node x="106.65909090909054" y="-256.2727272727275">com.example.chargemessenger.Network.Network</node>
+    <node x="-740.886363636364" y="-393.0">com.example.chargemessenger.Logic.MyService</node>
+    <node x="1220.4318181818185" y="-111.54545454545507">com.example.chargemessenger.MVVM.Models.Configs</node>
+    <node x="477.03409090909076" y="-311.00000000000006">com.example.chargemessenger.Database.ConfigsDatabase</node>
+    <node x="687.4318181818185" y="32.99999999999977">com.example.chargemessenger.Database.ConfigRepository</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.chargemessenger.MVVM.View.BatLvlFragment" target="com.example.chargemessenger.Logic.MyService" relationship="DEPENDENCY">
+      <point x="-171.49951515151503" y="3.6363636354508344E-4" />
+      <point x="-415.0" y="-581.136" />
+      <point x="-415.0" y="-287.0" />
+      <point x="139.00036363636394" y="0.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="TO_ONE">
+      <point x="-14.999522727272279" y="-73.49999999999977" />
+      <point x="451.009" y="3.0" />
+      <point x="1001.0" y="3.0" />
+      <point x="1001.0" y="40.5" />
+      <point x="-108.99981818181845" y="68.04545454545507" />
+    </edge>
+    <edge source="com.example.chargemessenger.Database.ConfigRepository" target="com.example.chargemessenger.Database.Dao.ConfigDao" relationship="TO_ONE">
+      <point x="76.86079545454493" y="-95.5" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.chargemessenger.Logic.BootNotifyReceiver" target="com.example.chargemessenger.MainActivity" relationship="DEPENDENCY">
+      <point x="9.090909236419975E-5" y="-73.00027272727252" />
+      <point x="-618.159" y="-134.0" />
+      <point x="-758.386" y="-134.0" />
+      <point x="-758.386" y="-581.136" />
+      <point x="-108.50015151515106" y="3.6363636354508344E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.View.BatLvlFragment" target="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" relationship="TO_ONE">
+      <point x="4.848484849730994E-4" y="62.000363636363545" />
+      <point x="-197.098" y="-472.0" />
+      <point x="49.0" y="-472.0" />
+      <point x="49.0" y="128.5" />
+      <point x="-138.49952272727228" y="2.2737367544323206E-13" />
+    </edge>
+    <edge source="com.example.chargemessenger.Network.Network" target="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" relationship="TO_ONE">
+      <point x="-108.50009090909053" y="-2.7272727251670403E-4" />
+      <point x="49.0" y="-172.273" />
+      <point x="49.0" y="128.5" />
+      <point x="-138.49952272727228" y="2.2737367544323206E-13" />
+    </edge>
+    <edge source="com.example.chargemessenger.Network.Network" target="com.example.chargemessenger.Network.API" relationship="DEPENDENCY">
+      <point x="108.49990909090945" y="-2.7272727251670403E-4" />
+      <point x="355.0" y="-172.273" />
+      <point x="355.0" y="-408.114" />
+      <point x="-125.499818181818" y="-3.636363637156137E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.Database.ConfigRepository" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="DEPENDENCY">
+      <point x="134.50018181818155" y="2.2737367544323206E-13" />
+      <point x="986.0" y="128.5" />
+      <point x="986.0" y="-27.545" />
+      <point x="-108.99981818181845" y="4.5454545507084276E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" target="com.example.chargemessenger.Database.ConfigRepository" relationship="TO_ONE">
+      <point x="138.5" y="15.0" />
+      <point x="-134.5" y="15.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.View.EnterFragment" target="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" relationship="TO_ONE">
+      <point x="-3.636363630619144E-4" y="-95.00027272727252" />
+      <point x="-181.864" y="-139.0" />
+      <point x="49.0" y="-139.0" />
+      <point x="49.0" y="128.5" />
+      <point x="-138.49952272727228" y="2.2737367544323206E-13" />
+    </edge>
+    <edge source="com.example.chargemessenger.MainActivity" target="com.example.chargemessenger.MVVM.View.EnterFragment" relationship="CREATE">
+      <point x="-108.5" y="-14.999636363636455" />
+      <point x="-773.386" y="-596.136" />
+      <point x="-773.386" y="75.72727272727252" />
+      <point x="-171.5" y="90.5" />
+    </edge>
+    <edge source="com.example.chargemessenger.Logic.MyBroadcastReceiver" target="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" relationship="TO_ONE">
+      <point x="4.848484849730994E-4" y="117.0" />
+      <point x="-239.598" y="-139.0" />
+      <point x="49.0" y="-139.0" />
+      <point x="49.0" y="128.5" />
+      <point x="-138.49952272727228" y="2.2737367544323206E-13" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.View.EnterFragment" target="com.example.chargemessenger.MVVM.View.BatLvlFragment" relationship="CREATE">
+      <point x="-171.50036363636303" y="-2.7272727252025675E-4" />
+      <point x="-391.0" y="-14.773" />
+      <point x="-391.0" y="-596.136" />
+      <point x="-171.49951515151503" y="-14.999636363636455" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="CREATE">
+      <point x="4.772727277213562E-4" y="-73.49999999999977" />
+      <point x="466.009" y="-70.773" />
+      <point x="986.0" y="-70.773" />
+      <point x="986.0" y="-27.545" />
+      <point x="-108.99981818181845" y="4.5454545507084276E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.Logic.MyService" target="com.example.chargemessenger.MainActivity" relationship="DEPENDENCY">
+      <point x="3.636363639998308E-4" y="106.0" />
+      <point x="-601.886" y="-134.0" />
+      <point x="-758.386" y="-134.0" />
+      <point x="-758.386" y="-581.136" />
+      <point x="-108.50015151515106" y="3.6363636354508344E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.MainActivity" target="com.example.chargemessenger.Logic.MyService" relationship="DEPENDENCY">
+      <point x="108.49984848484888" y="3.6363636354508344E-4" />
+      <point x="-415.0" y="-581.136" />
+      <point x="-415.0" y="-287.0" />
+      <point x="139.00036363636394" y="0.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.MainActivity" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="DEPENDENCY">
+      <point x="-1.5151515106026636E-4" y="-83.99963636363645" />
+      <point x="-586.887" y="-682.636" />
+      <point x="986.0" y="-682.636" />
+      <point x="986.0" y="-27.545" />
+      <point x="-108.99981818181845" y="4.5454545507084276E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.Logic.MyBroadcastReceiver" target="com.example.chargemessenger.Network.Network" relationship="TO_ONE">
+      <point x="129.0" y="99.727" />
+      <point x="-108.5" y="-15.000272727272517" />
+    </edge>
+    <edge source="com.example.chargemessenger.Database.ConfigsDatabase" target="com.example.chargemessenger.Database.Dao.ConfigDao" relationship="DEPENDENCY">
+      <point x="128.0" y="-14.999999999999943" />
+      <point x="-120.5" y="-14.999999999999943" />
+    </edge>
+    <edge source="com.example.chargemessenger.Network.OpenTelUrlNetwork" target="com.example.chargemessenger.Network.API" relationship="DEPENDENCY">
+      <point x="108.49990909090945" y="-3.636363637156137E-4" />
+      <point x="355.0" y="-363.114" />
+      <point x="355.0" y="-408.114" />
+      <point x="-125.499818181818" y="-3.636363637156137E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.Network.Network" target="com.example.chargemessenger.Network.API" relationship="TO_ONE">
+      <point x="108.49990909090945" y="14.999727272727483" />
+      <point x="340.0" y="-157.273" />
+      <point x="340.0" y="-393.114" />
+      <point x="-125.499818181818" y="14.999636363636284" />
+    </edge>
+    <edge source="com.example.chargemessenger.MainActivity" target="com.example.chargemessenger.MVVM.View.BatLvlFragment" relationship="CREATE">
+      <point x="108.49984848484888" y="-14.999636363636455" />
+      <point x="-171.49951515151503" y="-14.999636363636455" />
+    </edge>
+    <edge source="com.example.chargemessenger.Database.Dao.ConfigDao" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="DEPENDENCY">
+      <point x="120.5" y="0.0" />
+      <point x="1329.4318181818185" y="-227.00000000000006" />
+      <point x="0.0" y="-84.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.MainActivity" target="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" relationship="TO_ONE">
+      <point x="-1.5151515106026636E-4" y="84.00036363636349" />
+      <point x="-586.887" y="-472.0" />
+      <point x="49.0" y="-472.0" />
+      <point x="49.0" y="128.5" />
+      <point x="-138.49952272727228" y="2.2737367544323206E-13" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" target="com.example.chargemessenger.Database.ConfigRepository" relationship="CREATE">
+      <point x="138.5" y="0.0" />
+      <point x="-134.5" y="0.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.Logic.BootNotifyReceiver" target="com.example.chargemessenger.Logic.MyService" relationship="DEPENDENCY">
+      <point x="108.00009090909236" y="-2.7272727252025675E-4" />
+      <point x="-415.0" y="-14.773" />
+      <point x="-415.0" y="-287.0" />
+      <point x="139.00036363636394" y="0.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.Logic.MyBroadcastReceiver" target="com.example.chargemessenger.Network.OpenTelUrlNetwork" relationship="TO_ONE">
+      <point x="129.0" y="-76.11363636363626" />
+      <point x="-108.5" y="0.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.Database.ConfigRepository" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="TO_MANY">
+      <point x="1.8181818154516804E-4" y="-95.49999999999977" />
+      <point x="821.932" y="3.0" />
+      <point x="1001.0" y="3.0" />
+      <point x="1001.0" y="40.5" />
+      <point x="-108.99981818181845" y="68.04545454545507" />
+    </edge>
+    <edge source="com.example.chargemessenger.Database.ConfigsDatabase" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="CREATE">
+      <point x="128.00018181818155" y="5.6843418860808015E-14" />
+      <point x="986.0" y="-227.0" />
+      <point x="986.0" y="-27.545" />
+      <point x="-108.99981818181845" y="4.5454545507084276E-4" />
+    </edge>
+    <edge source="com.example.chargemessenger.Network.OpenTelUrlNetwork" target="com.example.chargemessenger.MVVM.ViewModel.ConfigViewModel" relationship="TO_ONE">
+      <point x="-9.090909054521035E-5" y="-84.00036363636372" />
+      <point x="215.159" y="-472.0" />
+      <point x="49.0" y="-472.0" />
+      <point x="49.0" y="128.5" />
+      <point x="-138.49952272727228" y="2.2737367544323206E-13" />
+    </edge>
+    <edge source="com.example.chargemessenger.Network.OpenTelUrlNetwork" target="com.example.chargemessenger.Network.API" relationship="TO_ONE">
+      <point x="108.49990909090945" y="14.999636363636284" />
+      <point x="340.0" y="-348.114" />
+      <point x="340.0" y="-393.114" />
+      <point x="-125.499818181818" y="14.999636363636284" />
+    </edge>
+    <edge source="com.example.chargemessenger.Database.ConfigRepository" target="com.example.chargemessenger.Database.ConfigsDatabase" relationship="DEPENDENCY">
+      <point x="-14.999818181818455" y="-95.5" />
+      <point x="806.932" y="-55.00000000000014" />
+      <point x="575.0342727272723" y="-55.00000000000014" />
+      <point x="-29.999818181818455" y="84.0" />
+    </edge>
+    <edge source="com.example.chargemessenger.MVVM.View.EnterFragment" target="com.example.chargemessenger.MVVM.Models.Configs" relationship="TO_ONE">
+      <point x="171.49963636363694" y="2.2277272727274777" />
+      <point x="34.0" y="-12.545000000000002" />
+      <point x="34.0" y="3.0" />
+      <point x="1001.0" y="3.0" />
+      <point x="1001.0" y="40.5" />
+      <point x="-108.99981818181845" y="68.04545454545507" />
+    </edge>
+    <edge source="com.example.chargemessenger.Logic.MyService" target="com.example.chargemessenger.Logic.MyBroadcastReceiver" relationship="TO_ONE">
+      <point x="139.0" y="-15.0" />
+      <point x="-129.0" y="-15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.5500000000000002" showDependencies="true" x="330.80519480519456" y="-185.5974025974026" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

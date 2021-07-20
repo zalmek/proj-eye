@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/placeholder"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/placeholder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BatLvlFragment">
+    tools:context=".MVVM.View.BatLvlFragment">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/extended_fab_content_desc"
-        android:text="@string/extended_fab_label"
-        app:icon="@drawable/return_back_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/wave_view"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <com.john.waveview.WaveView
-        android:id="@+id/wave_view"
+    <com.narayanacharya.waveview.WaveView
+        android:id="@+id/waveView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#81BCEA"
-        app:above_wave_color="#00FF0A"
-        app:blow_wave_color="#00FF0C"
-        app:progress="50"
-        app:wave_height="little"
-        app:wave_hz="normal"
-        app:wave_length="middle" />
+        android:layout_gravity="center"
+        app:waveAmplitude="6.5"
+        app:waveBackgroundColor="#FFFFFF"
+        app:waveColor="#93F380"
+        app:waveDensity="5.0"
+        app:waveFrequency="2.0"
+        app:waveNumberOfWaves="5"
+        app:wavePhaseShift="-0.05"
+        app:wavePrimaryLineWidth="3.0"
+        app:waveSecondaryLineWidth="1.0"
+        app:waveXAxisPositionMultiplier="0.5" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="85dp"
+        android:layout_height="137dp"
+        android:layout_weight="1"
+        android:text="@string/textview"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
